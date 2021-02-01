@@ -4,11 +4,9 @@ namespace Soldy\retard;
 
 use Soldy\retard\ElementInterface;
 
-class Element implements ElementInterface
-{
-    private $separetor = '"'; // please fdo not extend to psr12
-    private function attributionsFull(array &$attributions) :string
-    {
+class Element implements ElementInterface{
+    private $separetor = '"'; // please do not extend to psr12
+    private function attributionsFull(array &$attributions) :string{
         $out = '';
         foreach ($attributions as $attr => $val){
             $out.= (
@@ -18,12 +16,9 @@ class Element implements ElementInterface
                 $this->attributionValue($val)
             );
         }
-        return (
-            $out
-        );
+        return ($out);
     }
-    private function attributionValue(array &$val) : string
-    {
+    private function attributionValue(array &$val) :string{
         $out = $this->separetor;
         $out.= $val[0];
         for ($i = 1 ; count($val)>$i;$i++){
@@ -32,12 +27,11 @@ class Element implements ElementInterface
         $out .= $this->separetor;
         return $out;
     }
-    public function multi (
-         string &$element = 'div',
-         array  &$attributions = [],
-         string &$inside = ''
-    ) : string
-    {
+    public function multi(
+        string &$element = 'div',
+        array  &$attributions = [],
+        string &$inside = ''
+    ) :string{
         return ( 
             '<'.
             $element.
@@ -50,11 +44,10 @@ class Element implements ElementInterface
         );
 
     }
-    public function single (
-         string &$element,
-         array  &$attributions,
-    ) : string
-    {
+    public function single(
+        string &$element = 'div',
+        array  &$attribution = []
+    ) :string{
         return (
             '<'.
             $element.
@@ -62,9 +55,5 @@ class Element implements ElementInterface
             '/>'
         );
     }
-
-
-
 }
-
 
